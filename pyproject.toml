@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/labdaemon/_version.py"
+
+[project]
+name = "labdaemon"
+dynamic = ["version"]
+description = "A Python framework for instrument control and experiment automation."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "loguru",
+]
+authors = [
+    {name = "The LabDaemon Team"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["instrument", "control", "automation", "laboratory", "experiment"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "fastapi",
+    "uvicorn",
+    "sse-starlette",
+    "requests>=2.25.0",
+    "numpy",
+    "httpx",
+]
+server = [
+    "fastapi",
+    "uvicorn",
+    "sse-starlette",
+    "requests>=2.25.0",
+    "numpy",
+]
+launcher = [
+    "PyQt5>=5.15.0",
+    "requests>=2.25.0",
+    "psutil",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
+
+[project.scripts]
+labdaemon-launcher = "labdaemon.patterns.launcher:main"
+
+[project.urls]
+Homepage = "https://docs.samsci.com/labdaemon/"
+Documentation = "https://docs.samsci.com/labdaemon/"
+Repository = "https://github.com/qnslab/labdaemon"
+Issues = "https://github.com/qnslab/labdaemon/issues"

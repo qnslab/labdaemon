@@ -1,0 +1,10 @@
+[book]
+authors = ["The LabDaemon Team"]
+language = "en"
+multilingual = false
+src = "src"
+title = "LabDaemon Documentation"
+
+[output.html]
+git-repository-url = "https://codeberg.org/samsci/labdaemon"
+mathjax-support = true
