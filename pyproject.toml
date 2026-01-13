@@ -18,7 +18,7 @@ authors = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -27,6 +27,11 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 keywords = ["instrument", "control", "automation", "laboratory", "experiment"]
+
+dependencies = [
+    "loguru",
+    "numpy",
+]
 
 [project.optional-dependencies]
 dev = [

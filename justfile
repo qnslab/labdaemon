@@ -27,12 +27,13 @@ docs-deploy:
 
 # Build the package
 build:
+	rm -rf dist
 	uv build
 
 # Publish to TestPyPI
-publish-test:
+publish-test: build
 	uv publish --publish-url https://test.pypi.org/legacy/
 
 # Publish to production PyPI
-publish:
+publish: build
 	uv publish
