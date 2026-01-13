@@ -6,5 +6,5 @@ src = "src"
 title = "LabDaemon Documentation"
 
 [output.html]
-git-repository-url = "https://codeberg.org/samsci/labdaemon"
+git-repository-url = "https://github.com/qnslab/labdaemon"
 mathjax-support = true
