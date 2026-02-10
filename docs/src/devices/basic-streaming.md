@@ -86,6 +86,26 @@ class StreamingDAQ:
 
 The callback runs in the streaming thread outside the device lock, so long-running callbacks won't block other code accessing the device.
 
+## Why Manual Thread Management?
+
+Regular device methods are automatically locked by the framework. Streaming is not: you have to write the threads yourself. Two reasons:
+
+First, some hardware SDKs call into Python from their own native threads. The framework cannot intercept or manage these. Your device code must register directly with the SDK and handle callbacks as they arrive.
+
+Second, streaming patterns vary too much between devices. Devices might stream with polling loops, rate limiters, backpressure queues, and hardware interrupts; each with different requirements. We found that attempting to come up with a non-complex (i.e. useful) abstraction in the labdameon framework to manage streaming was not worthwile compared to just letting you define the streaming threads yourself.
+
+### What You Are Responsible For
+
+You are writing concurrent code now. Be careful of the usual issues from race conditions, deadlocks, or orphaned threads.
+
+Your streaming thread and public methods may access the same variables. Use `self._ld_lock` to protect shared state, but never hold this lock when calling the callback. Callbacks run outside the lock specifically so they can call public methods without deadlocking - but this means if the callback calls a method on your device, that method will block until the streaming thread releases the lock.
+
+Streaming does not lock the device from other commands. The framework still wraps public methods with `self._ld_lock`, so multiple threads can safely call device methods while streaming runs. Your streaming thread should acquire the lock only for brief state updates, not for the entire acquisition loop.
+
+Make `stop_streaming()` idempotent. It may be called multiple times, from different threads, or during exception handling. Signal the stop event immediately, then join the thread if it exists. Handle the case where the thread is already gone.
+
+Finally, the callback runs in your streaming thread. If it blocks, you drop data. Keep callbacks fast or move heavy work to another thread.
+
 ## Consuming Streamed Data
 
 Three patterns for consuming streamed data: locally, via remote Python client, or in a web browser.
