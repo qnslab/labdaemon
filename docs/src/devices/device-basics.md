@@ -28,6 +28,15 @@ class MyLaser:
 
 That's it. The framework handles the rest.
 
+### Understanding device_id
+
+`device_id` is a logical identifier for tracking within LabDaemon only. It has no relation to hardware address or configuration. Typical values: `"laser1"`, `"daq1"`, `"spectrometer"`.
+
+LabDaemon provides thread safety, lifecycle, and optional server API. Your device provides hardware access at whatever level makes sense:
+- Direct drivers (PyVISA, SDKs, etc.)
+- Wrappers around existing libraries
+- Abstractions over multiple interfaces
+
 ### Understanding the Three Methods
 
 **`__init__(device_id, address, **kwargs)`** - Store configuration without touching hardware. The `device_id` is injected by the framework. Additional parameters come from `daemon.add_device()`.

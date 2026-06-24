@@ -9,7 +9,7 @@ If your streaming device owns background threads, protect shared state with the 
 ```python
 class ThreadSafeStreamingDevice:
     def __init__(self, device_id: str, **kwargs):
-        self.device_id = device_id
+        self.device_id = device_id  # LabDaemon tracking ID, unrelated to hardware address
         self._streaming_thread = None
         self._stop_event = threading.Event()
         self._callback = None

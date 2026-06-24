@@ -40,7 +40,8 @@ class LabDaemon:
         """Create and register device instance with thread-safe method wrapping.
         
         Parameters:
-        - device_id (str): Unique identifier for this device instance
+        - device_id (str): Logical identifier for tracking within LabDaemon only. 
+          Unrelated to hardware address. Typical values: "laser1", "daq1".
         - device_type (str): Registered device type name (must be registered via register_plugins)
         - **kwargs: Passed to device __init__()
         

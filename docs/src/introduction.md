@@ -4,7 +4,9 @@
 
 # LabDaemon
 
-LabDaemon is a Python framework for instrument control and experiment automation. Write device drivers and tasks once, run them in scripts, GUIs, and web interfaces.
+LabDaemon is a Python framework for instrument control and experiment automation. You write device drivers and tasks once, and can run them in scripts, GUIs, and web interfaces.
+
+LabDaemon orchestrates multi-device tasks, threading, lifecycles, and optional server access, so you can easily build complex experiments.
 
 ## Core Features
 

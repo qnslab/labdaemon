@@ -6,7 +6,7 @@ A five-minute introduction to LabDaemon's core concepts. For more detailed examp
 
 LabDaemon manages two things:
 
-1. **Devices** - Plain Python classes wrapping lab instruments
+1. **Devices** - Python classes providing instrument access (direct drivers, wrappers, or abstractions)
 2. **Tasks** - Background functions that coordinate devices
 
 Here's a minimal example:

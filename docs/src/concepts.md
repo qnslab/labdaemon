@@ -6,7 +6,7 @@ If you haven't already, start with [Magic 🪄✨](magic.md) to understand the d
 
 ## Devices
 
-A device is a Python class that wraps an instrument. It's your laser, spectrometer, DAQ, or whatever hardware you're controlling. Just write a class with methods that do things:
+A device is a Python class that provides access to an instrument. It can implement drivers directly, wrap existing libraries, or abstract multiple interfaces. LabDaemon wraps your device with thread safety, lifecycle, and optional server API.
 
 ```python
 class MyLaser:
